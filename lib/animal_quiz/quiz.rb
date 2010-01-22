@@ -2,7 +2,11 @@ module AnimalQuiz
   class Quiz
     def initialize(responder)
       @responder = responder
-      @responder.puts "Is it a mouse?"
+      @responder.puts "Think of an animal and I will try to guess it."
+    end
+    
+    def guess()
+      
     end
   end
 end
