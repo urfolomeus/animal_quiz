@@ -36,9 +36,22 @@ module AnimalQuiz
         @quiz.answer('y')
       end
       
+      it "should display exit message when it has won" do
+        @quiz.guess
+        @responder.should_receive(:puts).with("Thanks for playing.")
+        @quiz.answer('y')
+      end
+      
       it "should lose when guessing the wrong animal" do
         @quiz.guess
         @responder.should_receive(:puts).with("Rats! I lost.")
+        @quiz.answer('n')
+      end
+      
+      it "should ask for the animal player was thinking of when lost" do
+        @quiz.guess
+        @responder.should_receive(:puts).
+          with("To help me guess next time, please tell me the animal you were thinking of.")
         @quiz.answer('n')
       end
     end

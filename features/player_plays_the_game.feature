@@ -18,8 +18,10 @@ Feature: player plays the game
 		Given that the game has asked a question
 		When the player answers "y"
 		Then I should see "Yay! I won."
+		And I should see "Thanks for playing."
 	
 	Scenario: the game guesses incorrectly
 		Given that the game has asked a question
 		When the player answers "n"
 		Then I should see "Rats! I lost."
+		And I should see "To help me guess next time, please tell me the animal you were thinking of."

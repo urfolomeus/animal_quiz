@@ -13,8 +13,10 @@ module AnimalQuiz
     def answer(response)
       if response == 'y'
         @responder.puts "Yay! I won."
+        @responder.puts "Thanks for playing."
       elsif response == 'n'
         @responder.puts "Rats! I lost."
+        @responder.puts "To help me guess next time, please tell me the animal you were thinking of."
       else
         @responder.puts "Eh? y or n only please."
       end
