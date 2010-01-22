@@ -3,3 +3,5 @@ $LOAD_PATH.push File.join(File.dirname(__FILE__), "..", "lib")
 require 'animal_quiz'
 
 quiz = AnimalQuiz::Quiz.new(STDOUT)
+sleep 2
+quiz.guess

@@ -1,8 +1,8 @@
-Feature: user starts game
+Feature: player starts game
 
-	As a user
+	As a player
 	I want to start a new game
-	So that it can try to guess the animal I'm thinking of
+	So that I can play the game
 	
 	Scenario: starting a game
 		Given that the game is not running

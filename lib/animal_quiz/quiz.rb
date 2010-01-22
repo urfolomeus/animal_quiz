@@ -5,8 +5,9 @@ module AnimalQuiz
       @responder.puts "Think of an animal and I will try to guess it."
     end
     
-    def guess()
-      
+    def guess
+      @responder.puts "\n"
+      @responder.puts "Is it a mouse?"
     end
   end
 end
