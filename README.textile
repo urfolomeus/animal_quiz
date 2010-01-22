@@ -7,6 +7,10 @@ Also, this is not the original version that Paul Boxley and I came up with on th
 night. We got a little sidetracked trying to TDD and I, at least, was utterly confused 
 by the binary tree structure and how we were going to code it. :)
 
+You can run the program from the console by typing _ruby bin/quiz_. Until I get round to 
+implementing the exit feature, you will need to _ctrl + c_ to exit (What? It's not in the 
+original spec!).
+
 Anyway, feel free to fork and add your own take/clean it up/make it better.
 
 Alan

@@ -24,17 +24,17 @@ module AnimalQuiz
         @quiz.guess
       end
       
-      it "should echo the players answers" do
+      it "should prompt the player for valid input if input invalid" do
         @quiz.guess
-        @responder.should_receive(:puts).with("y")
-        @quiz.answer('y')
+        @responder.should_receive(:puts).with("Eh? y or n only please.")
+        @quiz.answer('bob')
       end
     
-      it "should win when guessing the correct animal" #do
-#        @quiz.guess
-#        @responder.should_receive(:puts).with("Yay! I won.")
-#        @quiz.answer('y')
-#      end
+      it "should win when guessing the correct animal" do
+        @quiz.guess
+        @responder.should_receive(:puts).with("Yay! I won.")
+        @quiz.answer('y')
+      end
     end
   end
 end

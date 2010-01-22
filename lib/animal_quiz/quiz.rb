@@ -11,7 +11,11 @@ module AnimalQuiz
     end
     
     def answer(response)
-      @responder.puts response
+      if response == 'y'
+        @responder.puts "Yay! I won."
+      else
+        @responder.puts "Eh? y or n only please."
+      end
     end
   end
 end
