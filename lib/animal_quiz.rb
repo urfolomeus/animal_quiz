@@ -1,0 +1,1 @@
+require 'animal_quiz/quiz'
