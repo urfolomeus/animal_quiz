@@ -9,12 +9,17 @@ Feature: player plays the game
 		When the game asks the first question
 		Then I should see "Is it a mouse?"
 		
-	Scenario: the game guesses correctly
-		Given that the game has asked a question
-		When the player answers "y"
-		Then I should see "Yay! I won."
-		
 	Scenario: the player gives an unrecgonised response
 		Given that the game has asked a question
 		When the player answers "bob"
 		Then I should see "Eh? y or n only please."
+		
+	Scenario: the game guesses correctly
+		Given that the game has asked a question
+		When the player answers "y"
+		Then I should see "Yay! I won."
+	
+	Scenario: the game guesses incorrectly
+		Given that the game has asked a question
+		When the player answers "n"
+		Then I should see "Rats! I lost."

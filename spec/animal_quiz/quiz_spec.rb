@@ -35,6 +35,12 @@ module AnimalQuiz
         @responder.should_receive(:puts).with("Yay! I won.")
         @quiz.answer('y')
       end
+      
+      it "should lose when guessing the wrong animal" do
+        @quiz.guess
+        @responder.should_receive(:puts).with("Rats! I lost.")
+        @quiz.answer('n')
+      end
     end
   end
 end
