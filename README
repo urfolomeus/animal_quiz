@@ -1,0 +1,16 @@
+h1. Animal Quiz
+
+This is my attempt at the Ruby Quiz that we started at ScotRUG on January 21st 2010. 
+The code is still being written so please don't expect a completed solution yet!
+
+Also, this is not the original version that Paul Boxley and I came up with on the 
+night. We got a little sidetracked trying to TDD and I, at least, was utterly confused 
+by the binary tree structure and how we were going to code it. :)
+
+Anyway, feel free to fork and add your own take/clean it up/make it better.
+
+Alan
+
+P.S. I'm coding this BDD-style so it may appear at times that the code makes no sense 
+or is too simplistic. This is just because I'm doing "the simplest thing that works" 
+each time until the complexity is required. Honest!
