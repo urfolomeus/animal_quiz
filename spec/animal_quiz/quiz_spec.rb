@@ -23,12 +23,18 @@ module AnimalQuiz
         @responder.should_receive(:puts).with("Is it a mouse?")
         @quiz.guess
       end
-    
-      it "should win when guessing the correct animal" do
+      
+      it "should echo the players answers" do
         @quiz.guess
-        @responder.should_receive(:puts).with("Yay! I won.")
+        @responder.should_receive(:puts).with("y")
         @quiz.answer('y')
       end
+    
+      it "should win when guessing the correct animal" #do
+#        @quiz.guess
+#        @responder.should_receive(:puts).with("Yay! I won.")
+#        @quiz.answer('y')
+#      end
     end
   end
 end

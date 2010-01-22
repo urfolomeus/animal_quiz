@@ -9,7 +9,8 @@ Feature: player plays the game
 		When the game asks the first question
 		Then I should see "Is it a mouse?"
 		
-	Scenario: the game guesses correctly
+	Scenario: the game gets a response from the user
 		Given that the game has asked a question
 		When the player answers "y"
-		Then I should see "Yay! I won."
+		Then I should see "y"
+		

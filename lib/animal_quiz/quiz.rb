@@ -11,7 +11,7 @@ module AnimalQuiz
     end
     
     def answer(response)
-      @responder.puts "Yay! I won."
+      @responder.puts response
     end
   end
 end
