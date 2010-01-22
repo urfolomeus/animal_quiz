@@ -9,5 +9,9 @@ module AnimalQuiz
       @responder.puts "\n"
       @responder.puts "Is it a mouse?"
     end
+    
+    def answer(response)
+      @responder.puts "Yay! I won."
+    end
   end
 end

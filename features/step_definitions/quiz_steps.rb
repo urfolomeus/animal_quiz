@@ -1,3 +1,7 @@
+def quiz
+  @quiz ||= AnimalQuiz::Quiz.new(responder)
+end
+
 def responder
   @responder ||= StringIO.new
 end
@@ -10,15 +14,23 @@ Given /^that the game is not running$/ do
 end
 
 Given /^that the game is running$/ do
-  @quiz = AnimalQuiz::Quiz.new(responder)
+  quiz
+end
+
+Given /^that the game has asked a question$/ do
+  quiz.guess
 end
 
 When /^I start the game$/ do
-  @quiz = AnimalQuiz::Quiz.new(responder)
+  quiz
 end
 
 When /^the game asks the first question$/ do
-  @quiz.guess
+  quiz.guess
+end
+
+When /^the player answers "([^\""]*)"$/ do |response|
+  quiz.answer(response)
 end
 
 Then /^it should ask me to think of an animal$/ do
