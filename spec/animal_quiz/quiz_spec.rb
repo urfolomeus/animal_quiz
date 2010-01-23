@@ -37,9 +37,8 @@ module AnimalQuiz
       end
       
       it "should display exit message when it has won" do
-        @quiz.guess
         @responder.should_receive(:puts).with("Thanks for playing.")
-        @quiz.process_response('y')
+        @quiz.game_won
       end
       
       it "should lose when guessing the wrong animal" do
@@ -49,10 +48,9 @@ module AnimalQuiz
       end
       
       it "should ask for the animal player was thinking of when lost" do
-        @quiz.guess
         @responder.should_receive(:puts).
           with("To help me guess next time, please tell me the animal you were thinking of.")
-        @quiz.process_response('n')
+        @quiz.game_lost
       end
       
       it "should store the animal player was thinking of" do
@@ -63,7 +61,7 @@ module AnimalQuiz
       it "should ask for a distinguishing question" do
         @responder.should_receive(:puts).
           with("Can you give me a question to distinguish between a dolphin and a mouse?")
-        @quiz.learn
+        @quiz.game_lost
       end
       
       it "should store the distinguishing question" do
@@ -74,12 +72,18 @@ module AnimalQuiz
       it "should ask for the answer to the distinguishing question for the given animal" do
         @responder.should_receive(:puts).
           with("What would your answer for dolphin be to 'Is it aquatic?' (y or n)?")
-        @quiz.learn
+        @quiz.game_lost
       end
       
       it "should store the answer to the distinguishing question" do
         @quiz.get_answer('y')
         @quiz.answer.should eql('y')
+      end
+      
+      it "should ask the player if they want to play again" do
+        @responder.should_receive(:puts).
+          with("Thanks. Would you like to play again?")
+        @quiz.game_lost
       end
     end
   end

@@ -6,7 +6,7 @@ def responder
   @responder ||= StringIO.new
 end
 
-def should_respond(response)
+def responder_should_contain(response)
   responder.string.split("\n").should include(response)
 end
 
@@ -21,8 +21,12 @@ Given /^that the game has made a guess$/ do
   quiz.guess
 end
 
+Given /^that the game has lost$/ do
+  quiz.game_lost
+end
+
 Given /^that the game has asked "([^\""]*)"$/ do |question|
-  quiz.learn
+  responder_should_contain(question)
 end
 
 When /^I start the game$/ do
@@ -50,11 +54,11 @@ When /^I give answer "([^\""]*)"$/ do |answer|
 end
 
 Then /^it should ask me to think of an animal$/ do
-  should_respond("Think of an animal and I will try to guess it.")
+  responder_should_contain("Think of an animal and I will try to guess it.")
 end
 
 Then /^I should see "([^\""]*)"$/ do |response|
-  should_respond(response)
+  responder_should_contain(response)
 end
 
 Then /^the game should store animal "([^\""]*)"$/ do |animal|

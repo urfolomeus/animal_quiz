@@ -30,26 +30,28 @@ module AnimalQuiz
     def game_lost
       @responder.puts "Rats! I lost."
       learn
+      @responder.puts "Thanks. Would you like to play again?"
     end
     
     def learn
+      get_actual_animal
+      get_distinguishing_question
+      get_answer
+    end
+    
+    def get_actual_animal(animal = nil)
       @responder.puts "To help me guess next time, please tell me the animal you were thinking of."
-      get_actual_animal(gets.chomp!)
+      @animal = animal || gets.chomp!
+    end
+    
+    def get_distinguishing_question(question = nil)
       @responder.puts "Can you give me a question to distinguish between a dolphin and a mouse?"
-      get_distinguishing_question(gets.chomp!)
+      @question = question || gets.chomp!
+    end
+    
+    def get_answer(answer = nil)
       @responder.puts "What would your answer for dolphin be to 'Is it aquatic?' (y or n)?"
-    end
-    
-    def get_actual_animal(animal)
-      @animal = animal
-    end
-    
-    def get_distinguishing_question(question)
-      @question = question
-    end
-    
-    def get_answer(answer)
-      @answer = answer
+      @answer = answer || gets.chomp!
     end
   end
 end
