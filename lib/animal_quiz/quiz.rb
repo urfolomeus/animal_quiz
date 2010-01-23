@@ -1,6 +1,6 @@
 module AnimalQuiz
   class Quiz
-    attr_reader :animal, :question, :answer
+    attr_accessor :animal, :question, :answer
     
     def initialize(responder)
       @responder = responder
@@ -45,13 +45,21 @@ module AnimalQuiz
     end
     
     def get_distinguishing_question(question = nil)
-      @responder.puts "Can you give me a question to distinguish between a dolphin and a mouse?"
+      @responder.puts "Can you give me a question to distinguish between #{prefix(@animal)} and a mouse?"
       @question = question || gets.chomp!
     end
     
     def get_answer(answer = nil)
-      @responder.puts "What would your answer for dolphin be to 'Is it aquatic?' (y or n)?"
+      @responder.puts "What would your answer for #{@animal} be to '#{@question}' (y or n)?"
       @answer = answer || gets.chomp!
+    end
+    
+    def prefix(string)
+      if %w(a e i o u).include?(string[0].chr)
+        s = "an #{string}"
+      else
+        s = "a #{string}"
+      end
     end
   end
 end

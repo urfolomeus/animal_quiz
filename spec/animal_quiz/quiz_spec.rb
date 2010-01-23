@@ -36,54 +36,77 @@ module AnimalQuiz
         @quiz.process_response('y')
       end
       
-      it "should display exit message when it has won" do
-        @responder.should_receive(:puts).with("Thanks for playing.")
-        @quiz.game_won
-      end
-      
       it "should lose when guessing the wrong animal" do
         @quiz.guess
         @responder.should_receive(:puts).with("Rats! I lost.")
         @quiz.process_response('n')
       end
-      
-      it "should ask for the animal player was thinking of when lost" do
-        @responder.should_receive(:puts).
-          with("To help me guess next time, please tell me the animal you were thinking of.")
-        @quiz.game_lost
+    
+      context "the game wins" do
+        it "should display exit message when it has won" do
+          @responder.should_receive(:puts).with("Thanks for playing.")
+          @quiz.game_won
+        end
       end
       
-      it "should store the animal player was thinking of" do
-        @quiz.get_actual_animal('dolphin')
-        @quiz.animal.should eql('dolphin')
-      end
+      context "the game loses" do
+       it "should ask for the animal player was thinking of when lost" do
+          @responder.should_receive(:puts).
+            with("To help me guess next time, please tell me the animal you were thinking of.")
+          @quiz.game_lost
+        end    
+    
+        it "should store the animal player was thinking of" do
+          @quiz.get_actual_animal('dolphin')
+          @quiz.animal.should eql('dolphin')
+        end
       
-      it "should ask for a distinguishing question" do
-        @responder.should_receive(:puts).
-          with("Can you give me a question to distinguish between a dolphin and a mouse?")
-        @quiz.game_lost
-      end
+        it "should ask for a distinguishing question for a dolphin" do
+          @quiz.get_actual_animal('dolphin')
+          @responder.should_receive(:puts).
+            with("Can you give me a question to distinguish between a dolphin and a mouse?")
+          @quiz.get_distinguishing_question('Is it aquatic?')
+        end
       
-      it "should store the distinguishing question" do
-        @quiz.get_distinguishing_question('Is it aquatic?')
-        @quiz.question.should eql('Is it aquatic?')
-      end
+        it "should ask for a distinguishing question for a elephant" do
+          @quiz.get_actual_animal('elephant')
+          @responder.should_receive(:puts).
+            with("Can you give me a question to distinguish between an elephant and a mouse?")
+          @quiz.get_distinguishing_question('Is it a large animal?')
+        end
       
-      it "should ask for the answer to the distinguishing question for the given animal" do
-        @responder.should_receive(:puts).
-          with("What would your answer for dolphin be to 'Is it aquatic?' (y or n)?")
-        @quiz.game_lost
-      end
+        it "should store the distinguishing question" do
+          @quiz.animal = "dolphin"
+          @quiz.get_distinguishing_question('Is it aquatic?')
+          @quiz.question.should eql('Is it aquatic?')
+        end
       
-      it "should store the answer to the distinguishing question" do
-        @quiz.get_answer('y')
-        @quiz.answer.should eql('y')
-      end
+        it "should ask for the answer to the distinguishing question for dolphin" do
+          @quiz.animal = "dolphin"
+          @quiz.question = "Is it aquatic?"
+          @responder.should_receive(:puts).
+            with("What would your answer for dolphin be to 'Is it aquatic?' (y or n)?")
+          @quiz.get_answer('y')
+        end
+        
+        it "should ask for the answer to the distinguishing question for elephant" do
+          @quiz.animal = "elephant"
+          @quiz.question = "Is it a small animal?"
+          @responder.should_receive(:puts).
+            with("What would your answer for elephant be to 'Is it a small animal?' (y or n)?")
+          @quiz.get_answer('n')
+        end
       
-      it "should ask the player if they want to play again" do
-        @responder.should_receive(:puts).
-          with("Thanks. Would you like to play again?")
-        @quiz.game_lost
+        it "should store the answer to the distinguishing question" do
+          @quiz.get_answer('y')
+          @quiz.answer.should eql('y')
+        end
+      
+        it "should ask the player if they want to play again" do
+          @responder.should_receive(:puts).
+            with("Thanks. Would you like to play again?")
+          @quiz.game_lost
+        end
       end
     end
   end

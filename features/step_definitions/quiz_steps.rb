@@ -21,14 +21,6 @@ Given /^that the game has made a guess$/ do
   quiz.guess
 end
 
-Given /^that the game has lost$/ do
-  quiz.game_lost
-end
-
-Given /^that the game has asked "([^\""]*)"$/ do |question|
-  responder_should_contain(question)
-end
-
 When /^I start the game$/ do
   quiz
 end
@@ -41,34 +33,10 @@ When /^I answer "([^\""]*)"$/ do |response|
   quiz.process_response(response)
 end
 
-When /^I give animal "([^\""]*)"$/ do |animal|
-  quiz.get_actual_animal(animal)
-end
-
-When /^I give question "([^\""]*)"$/ do |question|
-  quiz.get_distinguishing_question(question)
-end
-
-When /^I give answer "([^\""]*)"$/ do |answer|
-  quiz.get_answer(answer)
-end
-
 Then /^it should ask me to think of an animal$/ do
   responder_should_contain("Think of an animal and I will try to guess it.")
 end
 
 Then /^I should see "([^\""]*)"$/ do |response|
   responder_should_contain(response)
-end
-
-Then /^the game should store animal "([^\""]*)"$/ do |animal|
-  quiz.animal.should eql(animal)
-end
-
-Then /^the game should store question "([^\""]*)"$/ do |question|
-  quiz.question.should eql(question)
-end
-
-Then /^the game should store answer "([^\""]*)"$/ do |answer|
-  quiz.answer.should eql(answer)
 end
