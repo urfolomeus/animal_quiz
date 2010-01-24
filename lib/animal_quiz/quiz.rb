@@ -20,17 +20,16 @@ module AnimalQuiz
       else
         @responder.puts "Eh? y or n only please."
       end
+      play_again
     end
     
     def game_won
       @responder.puts "Yay! I won."
-      @responder.puts "Thanks for playing."
     end
     
     def game_lost
       @responder.puts "Rats! I lost."
       learn
-      @responder.puts "Thanks. Would you like to play again?"
     end
     
     def learn
@@ -53,6 +52,18 @@ module AnimalQuiz
       @responder.puts "What would your answer for #{@animal} be to '#{@question}' (y or n)?"
       @answer = answer || gets.chomp!
     end
+    
+    def play_again(decision = nil)
+      @responder.puts "Would you like to play again?"
+      decision ||= gets.chomp!
+      if decision == 'y'
+        guess
+      else
+        @responder.puts "Thanks for playing."
+      end
+    end
+    
+    private
     
     def prefix(string)
       if %w(a e i o u).include?(string[0].chr)

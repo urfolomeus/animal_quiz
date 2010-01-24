@@ -30,6 +30,14 @@ When /^I give answer "([^\""]*)"$/ do |answer|
   quiz.get_answer(answer)
 end
 
+When /^I do not want to play again$/ do
+  quiz.play_again('n')
+end
+
+When /^I do want to play again$/ do
+  quiz.play_again('y')
+end
+
 Then /^the game should store animal "([^\""]*)"$/ do |animal|
   quiz.animal.should eql(animal)
 end

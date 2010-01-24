@@ -45,3 +45,13 @@ Feature: game learns a new animal
 		When I give answer "n"
 		Then I should see "What would your answer for elephant be to 'Is it a small animal?' (y or n)?"
 		And the game should store answer "n"
+		
+	Scenario: the game asks if I want to play again and I do
+		Given that the game has lost
+		When I do not want to play again
+		Then I should see "Thanks for playing."
+		
+	Scenario: the game asks if I want to play again and I do not
+		Given that the game has lost
+		When I do want to play again
+		Then I should see "Is it a mouse?"

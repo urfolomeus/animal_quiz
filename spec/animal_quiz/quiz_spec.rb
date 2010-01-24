@@ -30,27 +30,22 @@ module AnimalQuiz
         @quiz.process_response('bob')
       end
     
-      it "should win when guessing the correct animal" do
-        @quiz.guess
-        @responder.should_receive(:puts).with("Yay! I won.")
-        @quiz.process_response('y')
-      end
-      
-      it "should lose when guessing the wrong animal" do
-        @quiz.guess
-        @responder.should_receive(:puts).with("Rats! I lost.")
-        @quiz.process_response('n')
-      end
-    
       context "the game wins" do
-        it "should display exit message when it has won" do
-          @responder.should_receive(:puts).with("Thanks for playing.")
-          @quiz.game_won
+        it "should win when guessing the correct animal" do
+          @quiz.guess
+          @responder.should_receive(:puts).with("Yay! I won.")
+          @quiz.process_response('y')
         end
       end
       
       context "the game loses" do
-       it "should ask for the animal player was thinking of when lost" do
+        it "should lose when guessing the wrong animal" do
+          @quiz.guess
+          @responder.should_receive(:puts).with("Rats! I lost.")
+          @quiz.process_response('n')
+        end
+        
+        it "should ask for the animal player was thinking of when lost" do
           @responder.should_receive(:puts).
             with("To help me guess next time, please tell me the animal you were thinking of.")
           @quiz.game_lost
@@ -104,8 +99,18 @@ module AnimalQuiz
       
         it "should ask the player if they want to play again" do
           @responder.should_receive(:puts).
-            with("Thanks. Would you like to play again?")
-          @quiz.game_lost
+            with("Would you like to play again?")
+          @quiz.play_again
+        end
+        
+        it "should display exit message if player doesn't want to play again" do
+          @responder.should_receive(:puts).with("Thanks for playing.")
+          @quiz.play_again('n')
+        end
+        
+        it "should make another guess if player does want to play again" do
+          @responder.should_receive(:puts).with("Is it a mouse?")
+          @quiz.play_again('y')
         end
       end
     end
