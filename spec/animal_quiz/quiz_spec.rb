@@ -30,21 +30,23 @@ module AnimalQuiz
         @quiz.process_response('bob')
       end
     
-      context "the game wins" do
-        it "should win when guessing the correct animal" do
+      context "the game makes an animal guess" do
+        before(:each) do
           @quiz.guess
+        end
+        
+        it "should win when guessing the correct animal" do
           @responder.should_receive(:puts).with("Yay! I won.")
           @quiz.process_response('y')
         end
-      end
-      
-      context "the game loses" do
+        
         it "should lose when guessing the wrong animal" do
-          @quiz.guess
           @responder.should_receive(:puts).with("Rats! I lost.")
           @quiz.process_response('n')
         end
-        
+      end
+      
+      context "the game learns a new animal" do
         it "should ask for the animal player was thinking of when lost" do
           @responder.should_receive(:puts).
             with("To help me guess next time, please tell me the animal you were thinking of.")
@@ -96,7 +98,9 @@ module AnimalQuiz
           @quiz.get_answer('y')
           @quiz.answer.should eql('y')
         end
+      end
       
+      context "the game asks the player if they want to play again" do
         it "should ask the player if they want to play again" do
           @responder.should_receive(:puts).
             with("Would you like to play again?")

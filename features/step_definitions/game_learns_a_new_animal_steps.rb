@@ -1,16 +1,16 @@
-Given /^that the game has lost$/ do
+Given /^the game has lost$/ do
   quiz.game_lost
 end
 
-Given /^that the game has asked "([^\""]*)"$/ do |question|
+Given /^the game has asked "([^\""]*)"$/ do |question|
   responder_should_contain(question)
 end
 
-Given /^that the actual animal is "([^\""]*)"$/ do |animal|
+Given /^the actual animal is "([^\""]*)"$/ do |animal|
   quiz.animal = animal
 end
 
-Given /^that the game has asked for a distinguishing question$/ do
+Given /^the game has asked for a distinguishing question$/ do
   quiz.get_distinguishing_question
 end
 

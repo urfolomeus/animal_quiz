@@ -1,21 +1,26 @@
+require File.join(File.dirname(__FILE__), 'quiz_helper.rb')
+
 module AnimalQuiz
   class Quiz
+    include QuizHelper
+    
     attr_accessor :animal, :question, :answer
     
     def initialize(responder)
       @responder = responder
       @responder.puts "Think of an animal and I will try to guess it."
+      @responder.puts "\n"
     end
     
     def guess
-      @responder.puts "\n"
       @responder.puts "Is it a mouse?"
     end
     
     def process_response(response)
-      if response == 'y'
+      case response
+      when 'y'
         game_won
-      elsif response == 'n'
+      when 'n'
         game_lost
       else
         @responder.puts "Eh? y or n only please."
@@ -60,16 +65,6 @@ module AnimalQuiz
         guess
       else
         @responder.puts "Thanks for playing."
-      end
-    end
-    
-    private
-    
-    def prefix(string)
-      if %w(a e i o u).include?(string[0].chr)
-        s = "an #{string}"
-      else
-        s = "a #{string}"
       end
     end
   end

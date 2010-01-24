@@ -5,6 +5,6 @@ Feature: player starts game
 	So that I can play the game
 	
 	Scenario: starting a game
-		Given that the game is not running
+		Given the game is not running
 		When I start the game
-		Then it should ask me to think of an animal
+		Then I should see "Think of an animal and I will try to guess it."
